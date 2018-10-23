@@ -12,5 +12,5 @@ CTriangle::~CTriangle()
 
 void CTriangle::display()
 {
-	std::cout << "CTriangle::display()" << std::endl;
+	std::cout << "CTriangle\t::display()" << std::endl;
 }

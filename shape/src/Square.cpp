@@ -11,5 +11,5 @@
 
 void CSquare::display()
 {
-	std::cout << "CSquare::display()" << std::endl;
+	std::cout << "CSquare\t\t::display()" << std::endl;
 }

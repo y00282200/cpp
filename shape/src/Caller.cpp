@@ -2,21 +2,30 @@
 #include "Square.h"
 #include "Rect.h"
 #include "Circle.h"
+#include "Triangle.h"
+#include "Ellipse.h"
 #include <conio.h>
 
 int main()
 {	
-	CShape *shapes[4];
+	
+	CShape shape;
 	CSquare square;
-	CRect r1, r2;
+	CRect rect;
 	CCircle circle;
+	CTriangle tri;
+	CEllipse ellip;
 
-	shapes[0] = &square;
-	shapes[1] = &r1;
-	shapes[2] = &r2;
-	shapes[3] = &circle;
+	CShape *shapes[6]{
+		&shape,
+		&square,
+		&rect,
+		&circle,
+		&tri,
+		&ellip
+	};
 
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 6; i++)
 	{
 		shapes[i]->display();
 	}

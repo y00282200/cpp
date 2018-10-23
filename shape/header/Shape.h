@@ -17,7 +17,7 @@ public:
 				  << "CShape::m_color: " << m_color << std::endl;
 	}
 
-	virtual void display() = 0;
+	virtual void display();
 
 };
 

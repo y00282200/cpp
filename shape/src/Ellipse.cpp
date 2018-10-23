@@ -13,5 +13,5 @@ CEllipse::~CEllipse()
 
 void CEllipse::display()
 {
-	std::cout << "CEllipse::display()" << std::endl;
+	std::cout << "CEllipse\t::display()" << std::endl;
 }

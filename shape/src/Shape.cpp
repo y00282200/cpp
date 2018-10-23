@@ -8,7 +8,7 @@ CShape::~CShape()
 {
 }
 
-//void CShape::display()
-//{
-//	std::cout << "CShape::display()" << std::endl;
-//}
+void CShape::display()
+{
+	std::cout << "CShape\t\t::display()" << std::endl;
+}

@@ -13,5 +13,5 @@ CRect::~CRect()
 
 void CRect::display()
 {
-	std::cout << "CRect::display()" << std::endl;
+	std::cout << "CRect\t\t::display()" << std::endl;
 }
