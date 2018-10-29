@@ -32,7 +32,7 @@ public:
     static double getRate() { return m_rate; }
     static void setRate(double newRate) { m_rate = newRate; }
     /* 后注释：
-     * static 成员孙函数不需要借助任何对象，就可以被调用，
+     * static 成员函数不需要借助任何对象，就可以被调用，
      * 所以编译器没有 隐式地为它加 this 指针。因此，static成员函数
      * 无法处理类中的 non-static 成员变量。
      */
