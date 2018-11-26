@@ -1,0 +1,323 @@
+ Introduction to C and C++
+
+https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-s096-introduction-to-c-and-c-january-iap-2013/lectures-and-assignments/
+
+
+Instructor(s) 
+Tom Lieber, Kyle Murray, Frank Li
+January IAP 2013
+
+Standard Environment
+(1) Athena command-line
+(2) Compiling: gcc, g++
+(3) Debugging: gdb, valgrind
+(4) Editing: nano, pico, vim, or emacs
+
+1 Compilation Pipeline
+
+1.1 Lecture Notes
+(1) You seek performance
+      "zero-overhead principle"
+      
+(2) You seek to interface directly with hardware
+
+(3) That's kinda it
+      C, a nice way to avoid writing assembly language directly
+      C++, responds to the demands of maintaining large C projects
+
+      C++11, responds to the demands of maintaining large C++ projects
+
+      Maintain power and flexibility of what came before
+
+Today: Compillation Pipeline
+
+Source Code -> Program
+       main.c           prog
+       int a = 1;   ->  @*)!%   -> ./prog
+gcc -o prog main.c
+
+       main.c           prog
+       int a = 1;
+                    ->  @*)!%   -> ./prog
+       main2.c
+       int b = 2;
+gcc -o prog main.c main2.c
+
+$ gcc -o prog main.c
+$ ./prog
+Hello, World!
+$
+    DONE
+
+"To debug the suasage, one must see how it is made."
+                       --Someon,e probably
+
+Main.java                       Main.class 
+int a = 1;          ->          %!(*@        ->       java Main
+
+main.py                         main.pyc
+a = 1               ->          %!(*@        ->       python main.py
+
+main.c                          main.o     prog
+int a = 1;  ->  int a = 1;  ->  %!(*@  ->  @*)!%  ->  ./prog
+=========================       main2.o
+    Pre-Process                 %!(*@  -> 
+                =====================
+                    Compile
+                                ================
+                                    Link
+(1) Pre-Process
+    #include
+    #define
+    #ifdef
+举例：
+rimshot.txt
+  ba-dum chh
+
+joke.txt
+  A man walks into
+  a bar. Ouch!
+  #include "rimshot.txt"
+
+cpp -P joke.txt
+output:
+  A main walks into
+  a bar. Ouch!
+  ba-dum chh
+
+doube.py
+  #define fosho def         These are called
+  #define kthx return       "macros
+  #define wutz print
+
+  fosho double(x):
+      kthx x * 2
+  wutz double(6)
+
+cpp -P double.py
+output:
+  def double(x):
+     return	x * 2
+  print double(6)
+
+cpp -P double.py | python
+12
+-- Awesome
+
+beer.txt
+#define beer(x) x bottles of \
+beer on the wall...
+
+beer(99)
+beer(98)
+beer(97)
+...
+
+cpp -P beer.txt
+output:
+  99 bottles of beer on the wall...
+  98 bottles of beer on the wall...
+  97 bottles of beer on the wall...
+  ...
+
+answer.txt
+  What's 7 times 6?
+  #ifdef REVEAL
+  42
+  #endif
+
+cpp -P answer.txt
+output:
+  What's 7 times 6?
+
+#define REVEAL
+or
+cpp -P -D REVEAL answer.txt
+output:
+  What's 7 times 6?
+  42
+
+answer.txt
+What's 7 times 6?
+#ifndef REVEAL
+42
+#endif
+
+cpp -P answer.txt
+output:
+  What's 7 times 6?
+  42
+
+(Fancy)
+String Substitution
+
+How is this used in C?
+
+hello.c
+  #include <stdio.h>    *angle brackets-> use the system search path
+  int main() {
+      printf("Hello, World!\n");
+      return 0;
+  }
+
+gcc -E hello.c
+
+output:
+  int printf(const char *, ...)
+  __attribute__((__format__
+  (__printf__, 1, 2)));
+
+  int main() {
+      printf("Hello, World!\n");
+  }
+
+  * pretending printf is all that's defined in stdio.h
+
+output:
+  int printf(const char *, ...);
+
+  int main() {
+      printf("Hello, World!\n");
+  }
+
+  * pretending printf is all that's defined in stdio.h
+
+#include is not
+    import pickle
+    import java.io.*
+
+fib.c
+  #define MAX_FIB 20
+  int fib[MAX_FIB];
+
+  int main() {
+    fib[0] = 0;
+    fib[1] = 1;
+    for (int i = 2; i < MAX_FIB; i++)
+      fib[i] = fib[i-1] + fib[i-2];
+    return 0;
+  }
+
+gcc -E fib.c
+output:
+  int fib[20];
+
+  int main() {
+    fib[0] = 0;
+    fib[1] = 1;
+    for (int i = 2; i < 20; i++)
+      fib[i] = fib[i-1] + fib[i-2];
+    return 0;
+  }
+
+debug.c
+  #include <stdio.h>
+
+  int main() {
+  #ifdef DEBUG
+      printf("Hello, World!\n");
+  #endif
+      return 0;
+  }
+
+gcc -DDEBUG debug.c -o debug
+output:
+  #include <stdio.h>
+
+  int main() {
+      printf("Hello, World!\n");
+      return 0;
+  }
+
+gcc debug.c -o debug
+output:
+  #include <stdio.h>
+
+  int main() {
+      return 0;
+  }
+
+
+(2) Compile
+
+
+(3) Link
+
+1.2 Lab Exercises
+
+The primary goal of this lab period is to get your C compiler up and
+running.
+
+We have 2 "Hello, World!" examples for you to practice compiling to
+make sure that everything is working.
+
+Compile hello1 with:
+gcc hello.c -o hello1
+
+Compile hello2 with:
+gcc main.c hello.c -o hello2
+
+1.3 Assignment 1
+Setup
+    Assignment 1 files (ZIP) (This ZIP file contains: 3 .c files and 2
+    .h files.)
+
+The zip contains 3 C files:
+    fibeverse.c
+    fibonacci.c
+    reverse.c
+And 2 header files (.h):
+    fibonacci.h
+    reverse.h
+
+You can compile them with this command (though it won't work at first;
+see Problem 1):
+
+gcc -Wall -std=c99 fibeverse.c reverse.c fibonacci.c -o fibeverse
+
+Problem 1
+    Unfortunately, the code doesn't compile as-is! Fix the compile
+    errors and warnings. gcc should produce no output with the above
+    command when you are done.
+
+两处：
+    第一，fibonacci.c增加头文件，#include "fibonacci.h"
+    第二，reverse.c修改函数名为 reverse
+
+You can run the resulting program with two arguments: a number, then a
+string (in quotes):
+
+./fibeverse 6 'what a trip that was!'  8  was! that trip a what
+
+    The first line it prints is the 6th fibonacci number. The second
+    line is the string you provided, with the words reversed.
+
+Problem 2
+    I can't decide whether I want a program that computes Fibonacci
+    numbers or a program that reverses strings! Let's modify fibeverse
+    so that it can be compiled into either.
+
+Use the preprocessor macros we taught in class to make it so that I
+can choose which program it is at compile time.
+
+When I compile it with this command, it should compute the Fibonacci
+number but not reverse the second argument:
+
+gcc -Wall -std=c99 -DFIBONACCI fibeverse.c reverse.c fibonacci.c -o fibonacci
+
+Then I can run it like this:
+
+./fibonacci 8
+
+When I use this command, it should reverse the string I provide as the
+first argument, and not do any fibonacci calculation:
+
+gcc -Wall -std=c99 -DREVERSE fibeverse.c reverse.c fibonacci.c -o reverse
+
+Then I can run it like this:
+
+./reverse 'a brave new world'
+
+It should work as it originally did when I provide both compiler flags:
+
+gcc -Wall -std=c99 -DFIBONACCI -DREVERSE fibeverse.c reverse.c fibonacci.c -o fibeverse
