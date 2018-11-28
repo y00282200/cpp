@@ -1,0 +1,164 @@
+
+the design of a document editor called Lexi.
+
+1 user interface  用户界面
+    文本显示区
+    pull-down menus    下拉菜单
+        File Edit Style Symbol
+          
+    scroll bars        滚动条
+        垂直
+        左右的
+
+    page icons
+        用 - + 翻页
+        跳到第几页 1 2 3 4 5 6 7 8 9 10
+          
+    缩放功能
+    
+2 核心功能（要实现的功能，要解决的问题，problem）
+    总的要求
+        can mix text and graphics 文字和图象都能解读
+
+    细节
+2.1 文档结构
+    the choice of internal representation for the document 文档内部表
+    示的选择
+
+    字符，中文单个字，中文的标点符号，中文的标点符号，中文的词，成语，歇后语等。
+        英文字母，英文的单词，英文的标点符号，
+        其他字符。
+        说明：这个涉及字符集的支持。字库，数据流等内容。
+
+    图形，这个需要有相关图形的标准，然后解码，还原出相应的图形及其基本
+        元素，如颜色：直线，多边形，圆等图形。
+
+    总结：就是文档的所有组成元素（physical structure），就是文档内容
+    的技术上的表示。不涉及这些内容的语义（表达的意义）。
+
+        如果从语义来分析就是：句子，段落，节，小节，章回。内部表示不存
+        储这些主义结构。但（作者的）design solution 也能很好地表示这些信息。
+        （疑问：我不明白是怎么做到的。）
+
+    方法：分析清楚字符的物理结构，然后选择一个内部表达，这个表达可以匹
+    配文档的物理结构。
+
+    功能演示程序：
+        读入本地文本文件，文件中有中文字符、标点符号等。
+            可以打开文件，正确显示中文字符、标点符号，
+            可以设置字符，调整字符大小，
+            行间距和字符大小是个什么关系？
+        输入中文字符、标点符号。
+        自动换行
+            怎么检测？
+            怎么换行？
+        定位每个元素
+            把位置信息 关联 到元素。
+            
+2.2 editing        
+    editing 编辑功能
+        文本编辑、文本排版
+        图象编辑、图像缩放、旋转
+2.3 formatting 格式化
+    怎样把文本和图象组织成行和列？
+    哪个对象负责执行 不同的格式化策略？
+        这些策略如何与 文本的内部表示交互？
+                      interact with the document's internal
+                      representation?
+2.4 displaying 显示（具体是指什么？）
+    用户界面和修饰和美化问题
+    用户界面的演进问题
+    
+2.5 styles 显示风格设置
+    支持不同的 look-and-feel standards
+
+    不同的 look-and-feel standards are usually implemented on
+    different window systems.  所以就要求设计应该 as independent of
+    the window system as possible
+        窗口 系统(不是操作系统) 
+2.6 User operations（对用户输入的支持）
+    用户通过操作界面来控制 Lexi, 控制方式是通过按钮、下拉菜单等。
+
+    包括对用户操作的响应和对用户操作的撤销
+    
+2.7 拼写检查
+
+    中文不存在错字，但可能存在错误的词，但这属于语法问题了，所以应该做
+    的是 语法检查。 语法检查涉及的是NLP了，这个知识还没有。
+
+    对中文来说，能做的是：
+        用词正确性检查。
+        的、得、地的检查。
+        标点符号规范的检查。
+        标点符号匹配错误提示。
+
+    文本可搜索信息的统计：
+        字数，
+        标点符号数，
+        高频词（词语出现的次数排行）
+        作者：
+    
+2.8 texual analysis 文本内容分析 （这个可以应用 NLP 技术）
+    这个根据领域不同，会有不同的规范。
+        工程
+            要分析什么呢？
+        科学
+            数学
+            物理
+        文学
+            小说
+                历史背景
+                主人公
+                人物关系分析
+                人物之间的互动分析
+                核心逻辑
+                核心事件
+                注：要思考的问题，
+                    什么是通过阅读能得到了?
+                    什么是通过阅读后会忘记，但是有必要记住的？
+                    会么是通过阅读得不到的？
+            诗歌
+            散文
+        合同
+            这个有必要分析
+        法律条文（分析法律条文之前有没有矛盾）
+            宪法
+            具体法律
+        新闻
+            政治
+            政策
+            娱乐
+            体育
+
+2.9 支持多种操作系统（可移植性）
+    这条是对应用的要求
+
+3 核心功能（problem）和对应的设计问题（design problems分析！）
+
+problem 有必要要析么？
+problem 有设计问题么？
+
+Each problem has an associated set of goals plus   --设计目标
+     constraints on how we achieve those goals.    --设计约束
+
+We explain the goals and constraints in detail
+   before proposing a specific solution.
+
+用模式来解决问题
+The problem and its solutions will illustrate one or more design
+    patterns.
+
+The discussion for each problem will culminate in a brief introduction
+to the relevant patterns.
+
+说明：
+    设计分析也在 第 2 节中展开了。
+
+3.1 Glyph 图元
+    
+
+
+10. 一个新的文档编辑器的超级功能
+    深度笔记能力。
+    compare and git 能力？
+    
