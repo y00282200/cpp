@@ -240,8 +240,150 @@ output:
 
 (2) Compile
 
+main.c                          main.o     prog
+int a = 1;  ->  int a = 1;  ->  %!(*@  ->  @*)!%  ->  ./prog
+                                main2.o
+                                %!(*@  -> 
+                =====================
+                    Compile
+
+Type-checking
+    int reptile() {
+        return "frog";
+    }
+    
+    reptile.c: In function ‘reptile’:
+    reptile.c:2:5: warning: return makes
+    integer from pointer without a cast
+
+
+    def vegetable(day):
+        if day != "Tuesday"
+           return "tomato"
+        else:
+            return 1000
+
+    Python says: no problem
+
+
+    int () {
+        return char*;
+    }
+    说明：不知道这个想说明什么？
+        可能编译器看到的是这个
+
+
+    int vegetable(char *day) {
+        if (strcmp(day, "Tuesday") != 0) {
+           return "tomato";
+        } else {
+            return 1000;
+        }
+    }
+    
+    int (char*) {
+        if (int) {
+           return char*;
+        } else {
+            return int;
+        }
+    }
+
+Everything has a single, fixed type
+
+
+    def foo(a, b):
+        return a + b
+
+    foo(2, 3)
+    foo("2", "3")
+
+Variable Declarations
+    int foo;
+    float foo;
+    double foo;
+    char foo;
+    int foo[42];
+    int *foo;
+    struct Bar foo;
+
+Function Declarations
+double fmin(double, double);
+  |          |       |
+  |          |       |
+return   argument types
+  type
+
+void exit(int);
+  |
+  |
+returns nothing
+
+int rand(void);
+          |
+          |
+   takes no arguments
+
+
+int foo(int a, int b) {
+    return a + b;
+}
+
+
+int a = 4;
+float b = (float)a;
+
+all theoretical casts
+int  float  double  char  int[]  int*  void(*f)(int)  struct X
+
+allowed casts
+    float  double
+    int[]  int*   void(*f)(int)
+    strcut X    struct X
+
+implicit casts
+int  float  double  char
+int[]  int*
+void(*f)(int)  void(*f)(int)
+struct X  struct X
+
+
+Linear processing
+    You can only use what's declared above
+
+
+
 
 (3) Link
+main.c                          main.o     prog
+int a = 1;  ->  int a = 1;  ->  %!(*@  ->  @*)!%  ->  ./prog
+                                main2.o
+                                %!(*@  -> 
+                                ================
+                                    Link
+Summary
+answer.h
+  int answer();
+
+answer.c
+  #include "answer.h"
+  int answer() {
+    return 1337;
+  }
+
+main.c
+  #include "answer.h"
+
+  int main() {
+      printf("%d\n", answer());
+      return 0;
+  }    
+
+gcc -E main.c
+gcc -c main.c answer.c
+gcc -o prog main.o answer.o
+./prog
+
 
 1.2 Lab Exercises
 
