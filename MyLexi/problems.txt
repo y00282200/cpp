@@ -65,6 +65,9 @@ the design of a document editor called Lexi.
         这些策略如何与 文本的内部表示交互？
                       interact with the document's internal
                       representation?
+    我想把这一节实现成排版（typography, typesetting）
+
+
 2.4 displaying 显示（具体是指什么？）
     用户界面和修饰和美化问题
     用户界面的演进问题
@@ -156,7 +159,6 @@ to the relevant patterns.
 
 3.1 Glyph 图元
     
-
 
 10. 一个新的文档编辑器的超级功能
     深度笔记能力。
