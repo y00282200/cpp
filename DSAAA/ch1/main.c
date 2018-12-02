@@ -9,8 +9,8 @@
 #include <string.h>
 #include <time.h>
 
-//#define RAN_COUNT    100
-#define RAN_COUNT    30000000
+#define RAN_COUNT    1000000
+//#define RAN_COUNT    30000000
 #define ARR_LEN      RAN_COUNT
 
 /* 
@@ -147,7 +147,7 @@ void print(int* arr, int len) {
         printf(" %d", arr[i]);
     }
 
-    printf("==print start:");
+    printf("==print end:");
     timestamp();
 }
 
