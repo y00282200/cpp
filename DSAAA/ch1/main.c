@@ -137,7 +137,7 @@ void readData() {
 
 void print(int* arr, int len) {
 
-    printf("==print start:");
+    printf("\n==print start:");
     timestamp();
     
     for (int i = 0 ; i < len; i++) {
@@ -147,7 +147,7 @@ void print(int* arr, int len) {
         printf(" %d", arr[i]);
     }
 
-    printf("==print end:");
+    printf("\n==print end:");
     timestamp();
 }
 
